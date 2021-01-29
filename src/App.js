@@ -37,7 +37,7 @@ const INITIAL_FORM_STATE = {
   message: '',
   termsOfService: false
 };
-
+const mobileNum = /^[0]?[789]\d{9}$/;
 const FORM_VALIDATION = Yup.object().shape({
   firstName: Yup.string()
     .required('Required'),
@@ -46,9 +46,8 @@ const FORM_VALIDATION = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email.')
     .required('Required'),
-  phone: Yup.number()
-    .integer()
-    .typeError('Please enter a valid phone number')
+  phone: Yup.string().matches(mobileNum, 'Please enter a valid phone number')
+    // .typeError('Please enter a valid phone number')
     .required('Required'),
   addressLine1: Yup.string()
     .required('Required'),
@@ -211,7 +210,7 @@ const App = () => {
                     <Button>
                       Submit Form
                     </Button>
-                  </Grid>
+                  </Grid> 
 
 
                 </Grid>
